@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .logo {
+        left: 50px;
+        height: 100px;
+        width: 100px;
+        top: -5px;
+        position: relative;
+    }
+
+    .nav {
+        position: fixed;
+        width: 100%;
+        /* Chiếm toàn bộ chiều rộng màn hình */
+        height: 80px;
+        display: grid;
+        grid-template-columns: 30% 40% 30%;
+        background-color: #f2bf18;
+        margin: 0px;
+        padding: 0px;
+        justify-content: space-between;
+        /* Căn chỉnh các phần tử bên trong nav */
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+
+    }
+      .chooseStyle {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            /* Đặt chiều rộng bằng 100% */
+            max-width: 900px;
+            /* Đặt chiều rộng tối đa để giữ cho layout gọn gàng */
+            margin-bottom: 20px;
+            /* Thêm khoảng cách giữa các thành phần */
+        }
+
+        .container1,
+        .container2 {
+            position: fixed; /* Giữ vị trí cố định */
+            top: 20%;        /* Cách đỉnh trang 20% */
+            left: 50%;       /* Cách trái 50%, canh giữa theo chiều ngang */
+            transform: translate(-50%, -20%); /* Đưa về giữa màn hình */
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #000;
+            z-index: 9999;   /* Độ ưu tiên cao để nổi lên trên */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Đổ bóng để nổi bật */
+            display:none;
+        }
+
+        .main2 {
+            background-color: rgb(233, 228, 223);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-col {
+            width: 48%;
+        }
+
+        .form-col-full {
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+        }
+    .main {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 80px;
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+    }
+
+    .taikhoan {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        border-right: 1px solid #ddd9d9;
+    }
+
+    .noidung {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .congthuc {
+        width: 100%;
+        height: 100%;
+        border-left: 1px solid #ddd9d9;
+    }
+
+    .phannoidung {
+        width: 100%;
+        height: 70px;
+        border-bottom: 1px solid #ddd9d9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .timkiem {
+        width: 100%;
+        display: inline;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+    }
+
+    .input {
+        width: 90%;
+        border-radius: 40px;
+        height: 35px;
+        padding: 0px 10px 0px 10px;
+        opacity: 0.8;
+    }
+
+.noidungchinh {
+    scrollbar-width: thin;
+    scrollbar-color: #c6c6c6 #ffffff;
+}
+
+
+
+
+
+    .anhdaidien {
+
+        display: flex;
+        width: 100%;
+        margin-left: 63px;
+
+    }
+
+    .anhdaidien div:first-child {
+        white-space: normal;
+        word-wrap: break-word;
+        width: 100%;
+    }
+
+    .timnguoidung {
+        width: 80%;
+        border-radius: 40px;
+        height: 35px;
+        padding: 0px 10px 0px 10px;
+        opacity: 0.8;
+    }
+
+    .timkiemnguoidung {
+        margin: 10px 0px 0px 5px;
+    }
+
+    .item {
+        margin: 15px 0px 0px 5px;
+    }
+
+    .phannoidungchinh {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        /* Khoảng cách giữa các nút */
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+</style>
+
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="logo">
+            <a th:href="@{/Trang-chu}">
+              <img class="logo" src="/logo..png">
+            </a>
+        </div>
+        <div class="timkiem">
+            <input class="input" type="text" placeholder="Tìm kiếm công thức">
+            <a><img class="" src="/finding.png" style="width: 40px; height: 40px;"></a>
+        </div>
+        <div class="anhdaidien" style="width: 300px; display: flex;">
+            <a th:href="@{/nguoi_dung_view}" style="text-decoration: none;">
+                <ul style="margin-left: 40px; display: flex; list-style-type: none; padding: 0; flex-wrap: nowrap; text-align:center;">
+                    <li style="margin-right: 40px;">
+                        <h5 th:text="${nguoiDung}" style="color:black;">  </h5>
+                    </li>
+                    <li>
+                        <img src="people.png" alt="ảnh đại diện" width="40" height="40">
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="taikhoan">
+            <div class="timkiemnguoidung">
+                <input class="timnguoidung" type="text" placeholder="Tìm kiếm người dùng">
+                <img class=" " src="/finding.png" style="width: 40px; height: 40px;">
+            </div>
+            <div style="margin-top: 40px;" >
+                <div>
+                    <h1 style="display:  flex; justify-content: center;">Thông tin cá nhân</h1>
+                </div>
+                <ul class="list-group list-group-flush" style="margin-left:40px; list-style-type:none;">
+                    <li class=" item"><a th:href="@{/Danh-Sach-Yeu-Thich}" style="text-decoration: none; color: black;">Danh sách công thức yêu thích</a></li>
+                    <li class=" item"><a th:href="@{/Trang-chu}" style="text-decoration: none; color: black;">Trang chủ</a></li>
+                    <li class=" item"><a th:href="@{/ban_tin_ca_nhan}" style="text-decoration: none; color: black;">Trang cá nhân</a></li>
+                    <li class=" item"><a th:href="@{/nguoi_dung_view}" style="text-decoration: none; color: black;">Thông tin cá nhân</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="noidung">
+            <div class="phannoidung">
+                <div class="phannoidungchinh">
+
+                    <button type="button" onclick="hien()" class="btn btn-outline-secondary">Tạo bài viết mới</button>
+
+                    <a th:href="@{/Trang-chu}" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Bản tin</a>
+                    <a th:href="@{/Cong-thuc}" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Công thức</a>
+                </div>
+            </div>
+            <div class="noidungchinh" style="max-height: 600px; overflow-y: auto;">
+                <div th:each="BaiDangDTO : ${baiDangs}">
+                    <div style="margin: 30px; background-color: #eeede9; min-height: 250px; border-radius:5px;">
+                        <div style="float: left;">
+                            <div style="min-height: 70px; width: 70px; position: relative; top: 20px; left: 30px;">
+                                <img th:src="${BaiDangDTO.hinhAnhNguoiDung}" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <ul style="list-style: none; position: relative; top: -50px; left: 100px;">
+                                <li th:text="${BaiDangDTO.tenNguoiDung}"> </li>
+                                <li  th:text="${BaiDangDTO.thoiGianBatDauDangBai}"> </li>
+                            </ul>
+                            <div style="width: 350px;">
+                                <ul style="list-style: none; position: relative; top: -30px;">
+                                    <li style="word-wrap: break-word;" th:text="${BaiDangDTO.noiDungBaiDang}">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="float: right; position: relative; top: 20px; right: 30px; width: 300px; height: 200px;">
+                            <img th:src="${BaiDangDTO.hinhAnh}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="congthuc">
+            <h2 style="display:  flex; justify-content: center; margin-top: 10px 0px 0px 5px;">Các loại công thức
+            </h2>
+            <ul class="list-group list-group-flush">
+                <li class=" item" style="list-style-type:none;">Tráng miệng</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div id="container1" class="container1">
+    <button onclick="notShow()" type="button" class="btn-close" aria-label="Close" style="position: relative; left: 700px; margin-bottom: 10px;"></button>
+    <div class="chooseStyle mb-3">
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container2')">Tạo Bài
+            Đăng</button>
+        <h3>Tạo Công Thức</h3>
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container1')">Tạo Công
+            Thức</button>
+    </div>
+    <hr>
+    <div class="main2">
+        <form th:action="@{/luu-cong-thuc}" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label >Tên Công Thức</label>
+                        <input class="form-control" type="text" name="tenCongThuc"   placeholder="Nhập tên công thức" aria-label="default input example">
+                    </div>
+                </div>
+                <div class="form-col">
+                        <label for="exampleFormControlTextarea1" class="form-label">Loại công thức</label>
+                        <select class="form-select" aria-label="Default select example"  name="loaiCongThuc">
+                            <option selected value="">Chọn loại công thức</option>
+                            <option th:each="item : ${listLoaiMonAn}" th:value="${item.maNguyenLieu}" th:text="${item.tenNguyenLieu}"></option>
+                        </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="1exampleFormControlTextarea1" name="moTa" rows="3" ></textarea>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nguyên liệu</label>
+                        <textarea class="form-control" id="2exampleFormControlTextarea1" rows="3"   name="nguyenLieu"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Các bước thực hiện</label>
+                        <textarea class="form-control" name="cacBuocThucHien" id="exampleFormControlTextarea1" rows="3" ></textarea>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="videoURL">Video URL</label>
+                        <input type="text" id="videoURL" name="videoURL" placeholder="Nhập URL video"  >
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Hình ảnh</label>
+                        <input class="form-control" name="hinhAnh"  type="file" id="formFile"  >
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="diemDanhGiaTrungBinh">Điểm Đánh Giá Trung Bình</label>
+                        <input type="text" id="diemDanhGiaTrungBinh" name="diemDanhGiaTrungBinh"
+                               placeholder="Nhập điểm đánh giá trung bình" >
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Lưu Công Thức</button>
+        </form>
+    </div>
+</div>
+
+<div id="container2" class="container2">
+    <button onclick="notShow()" type="button" class="btn-close" aria-label="Close" style="position: relative; left: 450px; margin-bottom: 10px;"></button>
+
+    <div class="chooseStyle mb-3">
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container2')">Tạo Bài
+            Đăng</button>
+        <h3 style="margin:0px 20px 0px 20px;">Tạo Bài Đăng</h3>
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container1')">Tạo Công
+            Thức</button>
+    </div>
+    <hr>
+    <form th:action="@{/luu-bai-dang}" enctype="multipart/form-data" method="post">
+        <div class="form-row d-flex">
+            <div class="form-col">
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label">Thêm hình ảnh</label>
+                    <input class="form-control" type="file" id="formFileMultiple" name="hinhAnh" multiple>
+                </div>
+            </div>
+            <div class="form-check" style="margin:35px 0px 0px 0px;">
+                <input type="checkbox" class="form-check-input" id="cheDoXem" name="cheDoXem">
+                <label class="form-check-label" for="cheDoXem">Chế độ xem công khai</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="noiDungBaiDang">Nội Dung Bài Đăng</label>
+            <textarea class="form-control" id="noiDungBaiDang" name="noiDungBaiDang" rows="3"
+                      placeholder="Nhập nội dung bài đăng"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Lưu Bài Đăng</button>
+    </form>
+</div>
+<div th:if="${success}" class="alert alert-success" id="successAlert" >
+    <p th:text="${success}"></p>
+</div>
+
+<!-- Hiển thị thông báo lỗi -->
+<div th:if="${errol}" class="alert alert-error" id="errorAlert" style="background-color: #dbd487;">
+    <p th:text="${errol}"></p>
+</div>
+
+<script>
+    function showContainer(containerId) {
+            // Ẩn tất cả các container
+            document.querySelector('.container1').style.display = 'none';
+            document.querySelector('.container2').style.display = 'none';
+
+            // Hiện container được chọn
+            document.getElementById(containerId).style.display = 'block';
+
+
+
+        }
+        function notShow() {
+            // Ẩn tất cả các container
+            document.querySelector('.container1').style.display = 'none';
+            document.querySelector('.container2').style.display = 'none';
+        }
+        function hien(){
+                document.getElementById('container1').style.display = 'block';
+
+            }
+</script>
+</body>
+</html>

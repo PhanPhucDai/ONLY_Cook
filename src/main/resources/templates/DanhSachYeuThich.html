@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    .container{
+           width: 100%;
+           height: 100%;
+           margin: 0px;
+           padding: 0px;
+       }
+       .logo{
+           left: 50px;
+           height: 100px;
+           width: 100px;
+           top: -5px;
+           position: relative;
+       }
+       .nav{
+           position: fixed;
+           width: 100%; /* Chiếm toàn bộ chiều rộng màn hình */
+           height: 80px;
+           display: grid;
+           grid-template-columns: 30% 40% 30%;
+           background-color: #f2bf18;
+           margin: 0px;
+           padding: 0px;
+           justify-content: space-between; /* Căn chỉnh các phần tử bên trong nav */
+           align-items: center; /* Căn giữa theo chiều dọc */
+
+       }
+           .main {
+           width: 100%;
+           height: 100%;
+           position: fixed;
+           top: 80px;
+           display: grid;
+           grid-template-columns:25% 50% 25%;
+   }
+       .taikhoan{
+           margin: 0px;
+           padding: 0px;
+           width: 100%;
+           height: 100%;
+           background-color:  rgb(244, 248, 249);
+   }
+       .noidung{
+           width: 100%;
+           height: 100%;
+           background-color: rgb(244, 248, 249);
+   }
+       .congthuc{
+           width: 100%;
+           height: 100%;
+           background-color: rgb(244, 248, 249);
+       }
+       .phannoidung{
+           width: 100%;
+           height: 70px;
+           background-color: rgb(244, 248, 249);
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+       .timkiem{
+           width: 100%;
+           display:  inline;
+           height: 50px;
+           justify-content: center;
+           align-items: center;
+           position: relative;
+
+       }
+       .themdanhsach {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 5px;
+            background-color: #f3f7d8;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+       .input{
+          width: 90%;
+           border-radius: 40px;
+           height:35px;
+           padding:0px 10px 0px 10px;
+           opacity: 0.8;
+       }
+       .anhdaidien  {
+
+           display: flex;
+           width: 100%;
+           margin-left: 63px;
+       }
+       .anhdaidien div:first-child {
+       white-space: normal;
+       word-wrap: break-word;
+       width: 100%;
+   }
+   .timnguoidung{
+       width: 80%;
+        border-radius: 40px;
+          height:35px;
+           padding:0px 10px 0px 10px;
+           opacity: 0.8;
+   }
+   .timkiemnguoidung{
+       margin:10px 0px 0px 5px;
+   }
+   .item{
+       margin:15px 0px 0px 5px;
+   }
+
+   .phannoidungchinh{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       gap: 20px; /* Khoảng cách giữa các nút */
+
+   }
+   .btn {
+       padding: 10px 20px;
+       font-size: 16px;
+   }
+</style>
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="logo">
+            <a th:href="@{/Trang-chu}">
+                <img class="logo" src="/logo..png">
+            </a>
+        </div>
+        <div class="timkiem">
+            <input class="input" type="text" placeholder="Tìm kiếm công thức">
+            <a><img class=" " src="/finding.png" style="width: 40px; height: 40px;"></a>
+        </div>
+        <div class="anhdaidien" style="width: 300px; display: flex;">
+            <a th:href="@{/nguoi_dung_view}" style="text-decoration: none;">
+                <ul style="margin-left: 40px; display: flex; list-style-type: none; padding: 0; flex-wrap: nowrap; text-align:center;">
+                    <li style="margin-right: 40px;">
+                        <h5 th:text="${nguoiDung}" style="color:black;"></h5>
+                    </li>
+                    <li>
+                        <img src="people.png" alt="ảnh đại diện" width="40" height="40">
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="taikhoan">
+            <div class="timkiemnguoidung">
+                <input class="timnguoidung" type="text" placeholder="Tìm kiếm người dùng">
+                <img class=" " src="/finding.png" style="width: 40px; height: 40px;">
+            </div>
+            <div style="margin-top: 40px;">
+                <div>
+                    <h1 style="display:  flex; justify-content: center;">Thông tin cá nhân</h1>
+                </div>
+                <ul class="list-group list-group-flush" style="margin-left:40px; list-style-type:none;">
+                    <li class=" item"><a th:href="@{/Danh-Sach-Yeu-Thich}" style="text-decoration: none; color: black;">Danh sách công thức yêu thích</li>
+                    <li class=" item"><a th:href="@{/Trang-chu}" style="text-decoration: none; color: black;">Trang chủ</a></li>
+                    <li class=" item" ><a th:href="@{/ban_tin_ca_nhan}" style="text-decoration: none; color: black;">Trang cá nhân</a></li>
+                    <li class=" item"><a th:href="@{/nguoi_dung_view}" style="text-decoration: none; color: black;">Thông tin cá nhân</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="noidung" style="border-left: 1px solid black; border-right: 1px solid black;">
+
+            <div class="noidungchinh">
+                <button class="btn btn-outline-secondary"
+                        style="margin: 30px; background-color: #f1f1f1; min-height: 30px; border-radius:5px;"
+                        type="button" onclick="showDiv()">Tạo danh sách yêu thích
+                </button>
+                <div>
+                    <div style="margin: 0px  30px 30px 30px; background-color: #f1f1f1; max-height: 450px; border-radius:5px;   overflow-y: auto;" >
+                        <div style="padding: 20px 0;  " th:if="${dsYeuThich != null and not #lists.isEmpty(dsYeuThich)}"
+                             th:each="yeuThich : ${dsYeuThich}">
+                            <ul class="list-unstyled border p-3 mb-3 rounded shadow-sm">
+                                <li>
+                                    <a th:href="@{/Chi-tiet-danh-sach-yeu-thich/{maDanhSach}(maDanhSach=${yeuThich.maDanhSachYeuThich})}"
+                                       class="text-dark font-weight-bold"
+                                       th:text="${yeuThich.tenDanhSachYeuThich}"></a>
+                                </li>
+                                <li class="d-flex justify-content-between align-items-center">
+                                    <h6>Ngày tạo: <span th:text="${yeuThich.ngayThem}" class="mb-0"></span></h6>
+                                </li>
+                                <li class="text-right mt-2">
+                                    <form th:action="@{/xoa-danh-sach}" method="POST" class="d-inline" id="xoaForm">
+                                        <input type="hidden" name="maDanhSach"  th:value="${yeuThich.maDanhSachYeuThich}">
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="xacNhan()">Xóa</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div th:if="${dsYeuThich == null or #lists.isEmpty(dsYeuThich)}">
+                            <h3 class="text-center text-muted">Không có danh sách yêu thích nào.</h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="congthuc">
+            <h2 style="display:  flex; justify-content: center; margin-top: 10px 0px 0px 5px;">Các loại công thức </h2>
+            <ul class="list-group list-group-flush">
+                <li class=" item" style="list-style-type:none;">Tráng miệng</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="centerDiv" class="themdanhsach card shadow-lg" style="display: none; width: 500px; border-radius: 10px;">
+    <div class="card-body">
+        <h4 class="card-title text-center">Thêm danh sách yêu thích
+            <button onclick="hiddenFormDS()" style="position:relative; left:80px;" class="btn-close" aria-label="Close"
+                    type="submit"></button>
+        </h4>
+        <form th:action="@{/tao-danh-sach}" method="post" onsubmit="hiddenFormDS()">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Tên danh sách yêu thích" name="tenDanhSach"
+                       aria-describedby="button-addon2" required>
+                <button class="btn btn-primary" type="submit">Thêm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    function xacNhan() {
+        var xacNhan = confirm("Điều này sẽ xóa những công thức của bạn đã lưu trước đó ");
+         if(xacNhan){
+            document.getElementById("xoaForm").submit();
+         }
+    }
+    function showDiv() {
+        var div = document.getElementById("centerDiv");
+        div.style.display = "block";
+    }
+    function hiddenFormDS(){
+        var div = document.getElementById("centerDiv");
+        div.style.display = "none"
+    }
+</script>
+</body>
+</html>

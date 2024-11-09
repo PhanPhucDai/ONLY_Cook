@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .logo {
+        left: 50px;
+        height: 100px;
+        width: 100px;
+        top: -5px;
+        position: relative;
+    }
+
+    .nav {
+        position: fixed;
+        width: 100%;
+        /* Chiếm toàn bộ chiều rộng màn hình */
+        height: 80px;
+        display: grid;
+        grid-template-columns: 30% 40% 30%;
+        background-color: #f2bf18;
+        margin: 0px;
+        padding: 0px;
+        justify-content: space-between;
+        /* Căn chỉnh các phần tử bên trong nav */
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+
+    }
+
+    .main {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 80px;
+        display: grid;
+        grid-template-columns: 25% 50% 25%;
+    }
+
+    .taikhoan {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        height: 100%;
+        border-right: 1px solid #ddd9d9;
+    }
+
+    .noidung {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .congthuc {
+        width: 100%;
+        height: 100%;
+        border-left: 1px solid #ddd9d9;
+    }
+
+    .phannoidung {
+        width: 100%;
+        height: 70px;
+        border-bottom: 1px solid #ddd9d9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .timkiem {
+        width: 100%;
+        display: inline;
+        height: 50px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+    }
+
+    .input {
+        width: 90%;
+        border-radius: 40px;
+        height: 35px;
+        padding: 0px 10px 0px 10px;
+        opacity: 0.8;
+    }
+
+.noidungchinh {
+    scrollbar-width: thin;
+    scrollbar-color: #c6c6c6 #ffffff;
+}
+
+
+
+
+
+    .anhdaidien {
+
+        display: flex;
+        width: 100%;
+        margin-left: 63px;
+
+    }
+
+    .anhdaidien div:first-child {
+        white-space: normal;
+        word-wrap: break-word;
+        width: 100%;
+    }
+
+    .timnguoidung {
+        width: 80%;
+        border-radius: 40px;
+        height: 35px;
+        padding: 0px 10px 0px 10px;
+        opacity: 0.8;
+    }
+
+    .timkiemnguoidung {
+        margin: 10px 0px 0px 5px;
+    }
+
+    .item {
+        margin: 15px 0px 0px 5px;
+    }
+
+    .phannoidungchinh {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        /* Khoảng cách giữa các nút */
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+      .center-div {
+            width: 500px;
+            height: 500px;
+            background-color: #f5fb9f;
+            display: grid;
+            justify-items: center;
+            align-content: center;
+            position: absolute;
+            visibility: hidden; /* Ẩn div ban đầu */
+        }
+</style>
+
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="logo">
+            <a th:href="@{/Trang-chu}">
+                <img class="logo" src="/logo..png">
+            </a>
+        </div>
+        <div class="timkiem">
+            <input class="input" type="text" placeholder="Tìm kiếm công thức">
+            <a><img class="" src="/finding.png" style="width: 40px; height: 40px;"></a>
+        </div>
+        <div class="anhdaidien" style="width: 300px; display: flex;">
+            <a th:href="@{/nguoi_dung_view}" style="text-decoration: none;">
+                <ul style="margin-left: 40px; display: flex; list-style-type: none; padding: 0; flex-wrap: nowrap; text-align:center;">
+                    <li style="margin-right: 40px;">
+                        <h5 th:text="${nguoiDung}" style="color:black;"> 23423 4234 44</h5>
+                    </li>
+                    <li>
+                        <img src="people.png" alt="ảnh đại diện" width="40" height="40">
+                    </li>
+                </ul>
+            </a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="taikhoan">
+            <div class="timkiemnguoidung">
+                <input class="timnguoidung" type="text" placeholder="Tìm kiếm người dùng">
+                <img class=" " src="/finding.png" style="width: 40px; height: 40px;">
+            </div>
+            <div style="margin-top: 40px;">
+                <div>
+                    <h1 style="display:  flex; justify-content: center;">Thông tin cá nhân</h1>
+                </div>
+                <ul class="list-group list-group-flush" style="margin-left:40px; list-style-type:none;">
+                    <li class=" item"><a th:href="@{/Danh-Sach-Yeu-Thich}" style="text-decoration: none; color: black;">Danh
+                        sách công thức yêu thích</a></li>
+                    <li class=" item"><a th:href="@{/Trang-chu}" style="text-decoration: none; color: black;">Trang chủ</a></li>
+                    <li class=" item"><a th:href="@{/ban_tin_ca_nhan}" style="text-decoration: none; color: black;">Trang
+                        cá nhân</a></li>
+                    <li class=" item"><a th:href="@{/nguoi_dung_view}" style="text-decoration: none; color: black;">Thông
+                        tin cá nhân</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="noidung">
+
+            <div class="noidungchinh" style="max-height: 600px; overflow-y: auto;">
+                <div th:each="congThuc : ${listCongThuc}">
+                    <div style="margin: 30px; background-color: #f6f4ef; min-height: 200px; border-radius:5px;">
+                        <div style="min-height: 70px; width: 550px; position: relative; top: 20px; left: 30px;">
+                            <h6 name="tên công thức" style="display:inline;">Tên công thức: <span
+                                    th:text="${congThuc.tenCongThuc}"></span></h6>
+                            <h6>Tên người tạo: <span th:text="${congThuc.tenNguoiTao}"></span></h6>
+                            <h6>Mô tả:<span th:text="${congThuc.moTa}"></span></h6>
+                            <h6>Điếm đánh giá: <span th:text="${congThuc.diemTB}"></span> <span>/5</span></h6>
+                            <div style="min-height: 70px; width: 550px; display: flex; gap: 10px;">
+                                <form method="get" style="display:inline;" id="idCongThuc">
+                                    <input type="hidden" name="maCongThuc" th:value="${congThuc.maCongThuc}"/>
+                                    <button type="button" class="btn" onclick="showDiv()"
+                                            style="border-radius: 5px; min-height: 20px; width: 110px; font-size: 10px;">
+                                        Lưu công thức
+                                    </button>
+                                </form>
+                                <form th:action="@{/chi-tiet-cong-thuc}" method="get" style="display:inline;">
+                                    <input type="hidden" name="maCongThuc" th:value="${congThuc.maCongThuc}"/>
+                                    <button type="submit" class="btn"
+                                            style="border-radius: 5px; min-height: 20px; width: 110px; font-size: 10px;">
+                                        Xem chi tiết
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="congthuc">
+            <h2 style="display:  flex; justify-content: center; margin-top: 10px 0px 0px 5px;">Các loại công thức
+            </h2>
+            <ul class="list-group list-group-flush">
+                <li class=" item" style="list-style-type:none;">Tráng miệng</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="center-div" id="centerDiv"
+     style="border: 1px solid rgb(224, 217, 217); border-radius: 8px; display: flex; flex-direction: column; align-items: center; background-color: #fff; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0; font-family: 'Arial', sans-serif; color: #333;">Danh Sách Yêu Thích Của Bạn</h3>
+        <button onclick="hiddenFormDS()" type="button" class="btn btn-outline-secondary"
+                style="border: none; background: none; font-size: 18px; color: #888;">&times;
+        </button>
+    </div>
+    <hr style="border: 1px solid rgb(224, 217, 217); width: 100%; margin: 10px 0;">
+
+
+    <div style="width: 100%; max-width: 480px; height: 400px; border-radius: 8px; z-index: 1; overflow-y: auto; padding: 10px; background-color: #f9f9f9;">
+        <ul style="list-style-type: none; padding: 0;" th:each="ds : ${dsYeuThich}">
+            <li style="border: 1px solid #ddd; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-radius: 5px; background-color: #fff; transition: background-color 0.3s;">
+                <div style="flex: 1; margin-right: 10px;">
+                    <p style="font-weight: bold; color: #333; font-size: 16px;" th:text="${ds.tenDanhSachYeuThich}"></p>
+                    <small style="color: #777;">Ngày tạo: <span th:text="${ds.ngayThem}"></span></small>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <form id="danhsachYeuThich" class="danhsachYeuThich" th:action="@{/them-cong-thuc}" method="post">
+                        <input type="hidden" name="idDanhSach" th:value="${ds.maDanhSachYeuThich}">
+                        <button type="submit"
+                                style="background-color: #5cb85c; border: none; border-radius: 5px; padding: 8px 12px; color: white; cursor: pointer; transition: background-color 0.3s;">
+                            Lưu vào
+                        </button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div th:if="${success}" class="alert alert-success" id="successAlert" >
+    <p th:text="${success}"></p>
+</div>
+
+<!-- Hiển thị thông báo lỗi -->
+<div th:if="${errol}" class="alert alert-error" id="errorAlert" style="background-color: #dbd487;">
+    <p th:text="${errol}"></p>
+</div>
+
+<script>
+    function hideAlerts() {
+        const successAlert = document.getElementById("successAlert");
+        const errorAlert = document.getElementById("errorAlert");
+
+        if (successAlert) {
+            setTimeout(() => {
+                successAlert.style.display = "none"; // Ẩn thông báo thành công
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+
+        if (errorAlert) {
+            setTimeout(() => {
+                errorAlert.style.display = "none"; // Ẩn thông báo lỗi
+            }, 2000); // 2000 milliseconds = 2 seconds
+        }
+    }
+    function hiddenFormDS(){
+         var div = document.getElementById("centerDiv");
+         div.style.visibility="hidden"
+     }
+
+ function showDiv() {
+    var div = document.getElementById("centerDiv");
+    div.style.visibility = "visible"; // Hiển thị div
+    div.style.top = "50%";
+    div.style.left = "50%";
+    div.style.transform = "translate(-50%, -50%)";
+
+    // Lấy giá trị maCongThuc từ form idCongThuc
+    var idCongThuc = document.getElementById("idCongThuc").elements["maCongThuc"].value;
+
+    // Tìm tất cả các form có class danhsachYeuThich
+    var forms = document.querySelectorAll(".danhsachYeuThich");
+
+    // Duyệt qua từng form và thêm input maCongThuc vào đúng form
+    forms.forEach(function (form) {
+        // Kiểm tra xem input ẩn đã tồn tại chưa
+        if (!form.querySelector('input[name="maCongThuc"]')) {
+            var hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "maCongThuc";
+            hiddenInput.value = idCongThuc;
+            form.appendChild(hiddenInput);
+        }
+    });
+}
+
+</script>
+</body>
+</html>

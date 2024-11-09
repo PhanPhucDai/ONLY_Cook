@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+             z-index: 1000px;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+        }
+
+        .chooseStyle {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            /* Đặt chiều rộng bằng 100% */
+            max-width: 900px;
+            /* Đặt chiều rộng tối đa để giữ cho layout gọn gàng */
+            margin-bottom: 20px;
+            /* Thêm khoảng cách giữa các thành phần */
+        }
+
+        .container1,
+        .container2 {
+            display: none;
+            /* Ẩn các container mặc định */
+            flex-direction: column;
+            justify-content: center;
+            width: 900px;
+            height: auto;
+            background-color: rgb(241, 238, 234);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .main {
+            background-color: rgb(233, 228, 223);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-col {
+            width: 48%;
+        }
+
+        .form-col-full {
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+        }
+    </style>
+    <script>
+        function showContainer(containerId) {
+            // Ẩn tất cả các container
+            document.querySelector('.container1').style.display = 'none';
+            document.querySelector('.container2').style.display = 'none';
+
+            // Hiện container được chọn
+            document.getElementById(containerId).style.display = 'flex';
+
+
+
+        }
+        function notShow() {
+            // Ẩn tất cả các container
+            document.querySelector('.container1').style.display = 'none';
+            document.querySelector('.container2').style.display = 'none';
+        }
+        function hien(){
+                document.getElementById('container1').style.display = 'flex';
+
+            }
+    </script>
+</head>
+
+<body>
+
+
+
+
+
+<div id="container1" class="container1">
+    <button onclick="notShow()" type="button" class="btn-close" aria-label="Close" style="position: relative; left: 840px; margin-bottom: 10px;"></button>
+    <div class="chooseStyle mb-3">
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container2')">Tạo Bài
+            Đăng</button>
+        <h3>Tạo Công Thức</h3>
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container1')">Tạo Công
+            Thức</button>
+    </div>
+    <hr>
+
+    <div class="main">
+        <form>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label >Tên Công Thức</label>
+                        <input class="form-control" type="text" placeholder="Nhập tên công thức"
+                               aria-label="default input example">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="maCongThuc">Mã Công Thức</label>
+                        <input type="number" id="maCongThuc" name="maCongThuc" placeholder="Nhập mã công thức">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="1exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Nguyên liệu</label>
+                        <textarea class="form-control" id="2exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Các bước thực hiện</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="videoURL">Video URL</label>
+                        <input type="text" id="videoURL" name="videoURL" placeholder="Nhập URL video">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Hình ảnh</label>
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label for="diemDanhGiaTrungBinh">Điểm Đánh Giá Trung Bình</label>
+                        <input type="text" id="diemDanhGiaTrungBinh" name="diemDanhGiaTrungBinh"
+                               placeholder="Nhập điểm đánh giá trung bình">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Lưu Công Thức</button>
+        </form>
+    </div>
+</div>
+
+<div id="container2" class="container2">
+    <button onclick="notShow()" type="button" class="btn-close" aria-label="Close" style="position: relative; left: 840px; margin-bottom: 10px;"></button>
+
+    <div class="chooseStyle mb-3">
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container2')">Tạo Bài
+            Đăng</button>
+        <h3 style="margin: 0px 20px 0px 20px;">Tạo Công Thức</h3>
+        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container1')">Tạo Công
+            Thức</button>
+    </div>
+    <hr>
+    <form>
+        <div class="form-row d-flex">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="maBaiDang">Mã Bài Đăng</label>
+                    <input type="number" class="form-control" id="maBaiDang" name="maBaiDang"
+                           placeholder="Nhập mã bài đăng">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="ngayBaiDang">Ngày Bài Đăng</label>
+                    <input type="datetime-local" class="form-control" id="ngayBaiDang" name="ngayBaiDang">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row d-flex">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="video">Video URL</label>
+                    <input type="text" class="form-control" id="video" name="video" placeholder="Nhập URL video">
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="hinhAnh">Hình Ảnh</label>
+                    <input type="text" class="form-control" id="hinhAnh" name="hinhAnh"
+                           placeholder="Nhập URL hình ảnh">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="noiDungBaiDang">Nội Dung Bài Đăng</label>
+            <textarea class="form-control" id="noiDungBaiDang" name="noiDungBaiDang" rows="3"
+                      placeholder="Nhập nội dung bài đăng"></textarea>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="cheDoXem" name="cheDoXem">
+            <label class="form-check-label" for="cheDoXem">Chế độ xem công khai</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Lưu Bài Đăng</button>
+    </form>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-0UoEXwU48SOeP4nVt9j09i1x9/sAcFlx9YmHQpEjwLPz5XY59AH8lTzGlSwqeauU"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-LOgV9+JoAaKj7MQhXgD2mZPbYv8x4uZmECMbIdiy4gzzfL1WJCOGqRfPU0Bc38iB"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
