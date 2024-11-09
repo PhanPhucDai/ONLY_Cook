@@ -26,10 +26,11 @@ public class BaiDangDTO {
     public BaiDangDTO() {
     }
 
-    public BaiDangDTO(String thoiGianBatDauDangBai, String tenNguoiDung, String hinhAnh, String noiDungBaiDang) {
+    public BaiDangDTO(String thoiGianBatDauDangBai, String tenNguoiDung, String hinhAnh, String noiDungBaiDang, String hinhAnhNguoiDung) {
         this.thoiGianBatDauDangBai = thoiGianBatDauDangBai;
         this.tenNguoiDung = tenNguoiDung;
         this.hinhAnh = hinhAnh;
+        this.hinhAnhNguoiDung = hinhAnhNguoiDung;
         this.noiDungBaiDang = noiDungBaiDang;
     }
 

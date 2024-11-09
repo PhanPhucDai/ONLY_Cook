@@ -47,12 +47,10 @@ public class TrangChu_Contronller {
         NguoiDung nguoidung = nguoiDung.getNguoiDung(tenDangNhap);
 
         List<BaiDangDTO> baiDangDTOS = listTime(baiDangService.baiDangDTOList());
+
         model.addAttribute("errol", errol);
         model.addAttribute("success", success);
-        for (int i = 0; i < baiDangDTOS.size(); i++) {
-            System.out.print("hinh anh nguoi dung"+ baiDangDTOS.get(i).getHinhAnhNguoiDung());
 
-        }
         System.out.print("");
         model.addAttribute("baiDangs", baiDangDTOS);
 
@@ -96,19 +94,19 @@ public class TrangChu_Contronller {
             long soPhutChenhLech = ChronoUnit.MINUTES.between(baidang.getNgayBaiDang(), localDateTime);
             //lấy số phút
             if (soThangChenhLech == 0 && soNgayChenhLech == 0 && soGioChenhLech == 0 && soPhutChenhLech != 0) {
-                BaiDangDTO baiDangDTO = new BaiDangDTO(soPhutChenhLech + " phút trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang());
+                BaiDangDTO baiDangDTO = new BaiDangDTO(soPhutChenhLech + " phút trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang(),baidang.getHinhAnhNguoiDung());
                 baiDangDTOS.add(baiDangDTO);
-                //lấy số giờ
+                //lấy số giờ thoiGianBatDauDangBai, String tenNguoiDung, String hinhAnh, String noiDungBaiDang
             } else if (soThangChenhLech == 0 && soNgayChenhLech == 0 && soGioChenhLech != 0) {
-                BaiDangDTO baiDangDTO = new BaiDangDTO(soGioChenhLech + " giờ trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang());
+                BaiDangDTO baiDangDTO = new BaiDangDTO(soGioChenhLech + " giờ trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang() ,baidang.getHinhAnhNguoiDung());
                 baiDangDTOS.add(baiDangDTO);
                 //lấy ngày
             } else if (soThangChenhLech == 0 && soNgayChenhLech != 0) {
-                BaiDangDTO baiDangDTO = new BaiDangDTO(soNgayChenhLech + " ngày trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang());
+                BaiDangDTO baiDangDTO = new BaiDangDTO(soNgayChenhLech + " ngày trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang() ,baidang.getHinhAnhNguoiDung());
                 baiDangDTOS.add(baiDangDTO);
                 //lấy tháng
             } else {
-                BaiDangDTO baiDangDTO = new BaiDangDTO(soThangChenhLech + " tháng trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang());
+                BaiDangDTO baiDangDTO = new BaiDangDTO(soThangChenhLech + " tháng trước", baidang.getTenNguoiDung(), baidang.getHinhAnh(), baidang.getNoiDungBaiDang() ,baidang.getHinhAnhNguoiDung());
                 baiDangDTOS.add(baiDangDTO);
             }
         }

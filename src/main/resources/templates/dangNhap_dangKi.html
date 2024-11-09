@@ -9,20 +9,18 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            margin: 0;
-            padding: 0;
+
             width: 100vw;
         }
 
         .container {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
+
+            height: 100px;
+            width: 100px;
         }
 
         .form-container {
-            flex: 1; /* Để form và ảnh chia đều chiều rộng màn hình */
-            position: relative;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,12 +43,13 @@
 
         .login-form {
             position: relative;
+			top: 80px;
+			left: 350px;
             z-index: 2;
             padding: 50px;
-            margin-top: 50px;
+            margin: 50px;
             background: rgba(255, 255, 255, 0.7);
             border-radius: 15px;
-            max-width: 600px; /* Để giới hạn kích thước form */
             width: 100%;
         }
 
@@ -81,6 +80,7 @@
 
         .hidden {
             opacity: 0;
+			display: none
         }
 
         .transition {
@@ -90,10 +90,10 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="form-container">
         <div class="image-container">
-            <img th:src="@{/anhLogin.jpg}" alt="Background Image" class="form-background" id="backgroundImage">
+            <img src="img.png" alt="Background Image" class="form-background" id="backgroundImage">
             <div id="loginForm" class="login-form visible transition">
                 <h1>Đăng Nhập</h1>
                 <form th:action="@{/kiemtradangnhap}" method="post">
@@ -114,12 +114,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-
-    <div class="form-container">
-        <div class="image-container">
-            <img src="/finding.png" alt="Register Background" class="form-background"/>
             <div id="registerForm" class="login-form hidden transition">
                 <h1>Đăng Ký</h1>
                 <form>
@@ -128,7 +122,7 @@
                         <input type="email" id="email" placeholder="Nhập email">
                     </div>
                     <div>
-                        <label for="password">Mật khẩu</label>
+                        <label for="">Mật khẩu</label>
                         <input type="password" id="" placeholder="Nhập mật khẩu"/>
                     </div>
                     <div>

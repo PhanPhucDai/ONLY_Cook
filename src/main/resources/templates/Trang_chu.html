@@ -225,12 +225,12 @@
         </div>
         <div class="anhdaidien" style="width: 300px; display: flex;">
             <a th:href="@{/nguoi_dung_view}" style="text-decoration: none;">
-                <ul style="margin-left: 40px; display: flex; list-style-type: none; padding: 0; flex-wrap: nowrap; text-align:center;">
+                <ul style="margin-left: 40px; top:10px; display: flex; list-style-type: none; padding: 0; flex-wrap: nowrap; text-align:center;">
                     <li style="margin-right: 40px;">
                         <h5 th:text="${nguoiDung}" style="color:black;">  </h5>
                     </li>
                     <li>
-                        <img src="people.png" alt="ảnh đại diện" width="40" height="40">
+                        <img src="people(1).png" alt="ảnh đại diện" width="40" height="40">
                     </li>
                 </ul>
             </a>
@@ -257,9 +257,7 @@
         <div class="noidung">
             <div class="phannoidung">
                 <div class="phannoidungchinh">
-
                     <button type="button" onclick="hien()" class="btn btn-outline-secondary">Tạo bài viết mới</button>
-
                     <a th:href="@{/Trang-chu}" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Bản tin</a>
                     <a th:href="@{/Cong-thuc}" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Công thức</a>
                 </div>
@@ -273,10 +271,10 @@
                             </div>
                             <ul style="list-style: none; position: relative; top: -50px; left: 100px;">
                                 <li th:text="${BaiDangDTO.tenNguoiDung}"> </li>
-                                <li  th:text="${BaiDangDTO.thoiGianBatDauDangBai}"> </li>
+                                <li th:text="${BaiDangDTO.thoiGianBatDauDangBai}"> </li>
                             </ul>
                             <div style="width: 350px;">
-                                <ul style="list-style: none; position: relative; top: -30px;">
+                                <ul style="list-style: none; position: relative; top: -30px; margin-top:40px;">
                                     <li style="word-wrap: break-word;" th:text="${BaiDangDTO.noiDungBaiDang}">
                                     </li>
                                 </ul>
