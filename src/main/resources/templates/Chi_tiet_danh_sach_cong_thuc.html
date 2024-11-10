@@ -160,10 +160,7 @@
     </div>
     <div class="main">
         <div class="taikhoan">
-            <div class="timkiemnguoidung">
-                <input class="timnguoidung" type="text" placeholder="Tìm kiếm người dùng">
-                <img class=" " src="/finding.png" style="width: 40px; height: 40px;">
-            </div>
+
             <div style="margin-top: 40px;">
                 <div>
                     <h1 style="display:  flex; justify-content: center;">Thông tin cá nhân</h1>
@@ -204,9 +201,12 @@
             </div>
         </div>
         <div class="congthuc">
-            <h2 style="display:  flex; justify-content: center; margin-top: 10px 0px 0px 5px;">Các loại công thức </h2>
-            <ul class="list-group list-group-flush">
-                <li class=" item" style="list-style-type:none;">Tráng miệng</li>
+            <h2 style="display:  flex; justify-content: center; margin: 40px 0px 0px 5px;">Các loại công thức
+            </h2>
+            <ul class="list-group list-group-flush" th:each="loaiMonAns : ${loaiMonAnList}">
+                <li class=" item" style="list-style-type:none; margin-left:50px;" >
+                    <a  style="text-decoration: none; color: black;" th:href="@{/Cong-thuc-theo-loai/{id}(id=${loaiMonAns.maLoaiMonAn})}" th:text="${loaiMonAns.tenLoaiMonAn}"></a>
+                </li>
             </ul>
         </div>
     </div>

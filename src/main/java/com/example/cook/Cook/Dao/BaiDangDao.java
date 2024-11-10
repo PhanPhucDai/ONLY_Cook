@@ -21,10 +21,10 @@ public interface  BaiDangDao extends JpaRepository<BaiDang, Integer> {
             "where bd.cheDoXem = 1")
     List<BaiDangDTO> AllBaiDang();
 
-    @Query("select new com.example.cook.Cook.DTO.BaiDangDTO( nd.tenNguoiDung, nd.hinhAnh,  bd.noiDungBaiDang, bd.hinhAnh, bd.ngayBaiDang) " +
+    @Query("select new com.example.cook.Cook.DTO.BaiDangDTO(nd.tenNguoiDung, nd.hinhAnh, bd.noiDungBaiDang, bd.hinhAnh, bd.ngayBaiDang) " +
             "from BaiDang bd " +
             "join bd.maNguoiDung nd " +
-            "where bd.cheDoXem = 1 " +
-            "and nd.maNguoiDung= :maSoNguoiDung")
+            "where nd.maNguoiDung = :maSoNguoiDung"
+    )
     List<BaiDangDTO> findAllByMaNguoiDung(@Param("maSoNguoiDung") int maSoNguoiDung);
 }

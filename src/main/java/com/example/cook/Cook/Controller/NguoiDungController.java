@@ -1,6 +1,7 @@
 package com.example.cook.Cook.Controller;
 
 import com.example.cook.Cook.DTO.BaiDangDTO;
+import com.example.cook.Cook.Entity.LoaiMonAn;
 import com.example.cook.Cook.Entity.NguoiDung;
 import com.example.cook.Cook.Service.BaiDangService;
 import com.example.cook.Cook.Service.LoaiMonAnService;
@@ -46,12 +47,16 @@ public class NguoiDungController {
       String matKhauMoi;
     @GetMapping(value ="/ban_tin_ca_nhan")
     public String banTinCaNhan(Model model){
+
         Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
         String tenDangNhap=authentication.getName();
         NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
         List<BaiDangDTO>baiDangDTOS= listTime(baiDangService.baiDangbyMaNguoiDung(nguoiDung));
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
         model.addAttribute("listLoaiMonAn", loaiMonAnService.loaiMonAnlist());
         model.addAttribute("baiDangs", baiDangDTOS);
+        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
         return "Bantincanhan";
     }
 
@@ -60,7 +65,8 @@ public class NguoiDungController {
        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
        String tenDangNhap=authentication.getName();
        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
-
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
        model.addAttribute("nguoidung",nguoiDung);
        return "nguoidung";

@@ -10,13 +10,12 @@ public class LoaiMonAn {
     @Id
     @Column(name = "maLoaiMonAn")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int maNguyenLieu;
+    private int maLoaiMonAn;
 
     @Column(name = "tenLoaiMonAn")
-    private String tenNguyenLieu;
+    private String tenLoaiMonAn;
 
-    @Column(name = "hinhAnh")
-    private String hinhAnh;
+
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "maLoaiMonAn")
     private List<CongThuc> congThucList;
@@ -26,25 +25,33 @@ public class LoaiMonAn {
     public LoaiMonAn() {
     }
 
-    public LoaiMonAn(String hinhAnh, String tenNguyenLieu, int maNguyenLieu) {
-        this.hinhAnh = hinhAnh;
-        this.tenNguyenLieu = tenNguyenLieu;
-        this.maNguyenLieu = maNguyenLieu;
+    public LoaiMonAn(  String tenLoaiMonAn, int maLoaiMonAn) {
+
+        this.tenLoaiMonAn = tenLoaiMonAn;
+        this.maLoaiMonAn = maLoaiMonAn;
     }
 
-    public int getMaNguyenLieu() {
-        return maNguyenLieu;
+    public List<CongThuc> getCongThucList() {
+        return congThucList;
     }
 
-    public void setMaNguyenLieu(int maNguyenLieu) {
-        this.maNguyenLieu = maNguyenLieu;
+    public void setCongThucList(List<CongThuc> congThucList) {
+        this.congThucList = congThucList;
     }
 
-    public String getTenNguyenLieu() {
-        return tenNguyenLieu;
+    public String getTenLoaiMonAn() {
+        return tenLoaiMonAn;
     }
 
-    public void setTenNguyenLieu(String tenNguyenLieu) {
-        this.tenNguyenLieu = tenNguyenLieu;
+    public void setTenLoaiMonAn(String tenLoaiMonAn) {
+        this.tenLoaiMonAn = tenLoaiMonAn;
+    }
+
+    public int getMaLoaiMonAn() {
+        return maLoaiMonAn;
+    }
+
+    public void setMaLoaiMonAn(int maLoaiMonAn) {
+        this.maLoaiMonAn = maLoaiMonAn;
     }
 }

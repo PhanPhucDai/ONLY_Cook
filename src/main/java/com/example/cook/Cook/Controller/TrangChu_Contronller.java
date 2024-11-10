@@ -45,16 +45,13 @@ public class TrangChu_Contronller {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String tenDangNhap = authentication.getName();
         NguoiDung nguoidung = nguoiDung.getNguoiDung(tenDangNhap);
-
         List<BaiDangDTO> baiDangDTOS = listTime(baiDangService.baiDangDTOList());
 
         model.addAttribute("errol", errol);
         model.addAttribute("success", success);
-
-        System.out.print("");
         model.addAttribute("baiDangs", baiDangDTOS);
-
-        model.addAttribute("listLoaiMonAn", loaiMonAnService.loaiMonAnlist());
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
         model.addAttribute("nguoiDung", nguoidung.getTenNguoiDung());
         return "Trang_chu";
     }

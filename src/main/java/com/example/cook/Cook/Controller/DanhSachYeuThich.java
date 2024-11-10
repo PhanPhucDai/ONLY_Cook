@@ -1,7 +1,9 @@
 package com.example.cook.Cook.Controller;
 
+import com.example.cook.Cook.Entity.LoaiMonAn;
 import com.example.cook.Cook.Entity.NguoiDung;
 import com.example.cook.Cook.Service.DanhSachYeuThichService;
+import com.example.cook.Cook.Service.LoaiMonAnService;
 import com.example.cook.Cook.Service.NguoiDungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -24,14 +26,22 @@ import java.util.List;
 @Controller
 public class DanhSachYeuThich {
     @Autowired
+    private LoaiMonAnService loaiMonAnService;
+    @Autowired
     private DanhSachYeuThichService danhSachYeuThichService;
     @Autowired
     private NguoiDungService nguoiDungService;
     @GetMapping(value = "/Danh-Sach-Yeu-Thich")
     public String getDanhSachYeuThich(Model model){
-        System.out.println(danhSachYeuThichService.getDanhSachYeuThich());
+
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String tenDangNhap=authentication.getName();
+        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
         List<com.example.cook.Cook.Entity.DanhSachYeuThich> danhSachYeuThichList= danhSachYeuThichService.getDanhSachYeuThich();
         model.addAttribute("dsYeuThich",danhSachYeuThichList);
+        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
         return "DanhSachYeuThich";
     }
     @PostMapping(value = "/them-cong-thuc")
@@ -69,6 +79,8 @@ public class DanhSachYeuThich {
         @GetMapping("/Chi-tiet-danh-sach-yeu-thich/{maDanhSach}")
         public String getCongThucByIdDanhSach(@PathVariable String maDanhSach, Model model) {
         com.example.cook.Cook.Entity.DanhSachYeuThich danhSachYeuThich=danhSachYeuThichService.layTenDanhSachCongThuc(Integer.parseInt(maDanhSach));
+            List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+            model.addAttribute("loaiMonAnList",loaiMonAnList );
             model.addAttribute("tenDanhSach",danhSachYeuThich.getTenDanhSachYeuThich());
             model.addAttribute("listCongThuc", danhSachYeuThichService.layDanhSachCongThuc(Integer.parseInt(maDanhSach)));
             return "Chi_tiet_danh_sach_cong_thuc";

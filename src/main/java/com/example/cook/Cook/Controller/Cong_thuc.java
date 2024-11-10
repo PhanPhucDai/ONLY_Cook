@@ -1,12 +1,17 @@
 package com.example.cook.Cook.Controller;
 
+import com.example.cook.Cook.DTO.BaiDangDTO;
 import com.example.cook.Cook.Dao.CongThucDao;
 import com.example.cook.Cook.Entity.CongThuc;
 import com.example.cook.Cook.Entity.LoaiMonAn;
 import com.example.cook.Cook.Entity.NguoiDung;
 import com.example.cook.Cook.Service.CongThucService;
 import com.example.cook.Cook.Service.DanhSachYeuThichService;
+import com.example.cook.Cook.Service.LoaiMonAnService;
+import com.example.cook.Cook.Service.NguoiDungService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +23,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @Controller
 public class Cong_thuc {
     @Autowired
+    private LoaiMonAnService loaiMonAnService;
+    @Autowired
     private CongThucService congThucService;
+    @Autowired
+    private NguoiDungService nguoiDungService;
     @Autowired
     private CongThucDao congThucDao;
     @Autowired
@@ -31,16 +41,35 @@ public class Cong_thuc {
     public String getAllCongThuc(@RequestParam(value = "errol", required = false) String errol,
                                  @RequestParam(value = "success", required = false) String success,
                                  Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String tenDangNhap=authentication.getName();
+        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
+        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
         model.addAttribute("dsYeuThich", danhSachYeuThichService.getDanhSachYeuThich());
         model.addAttribute("listCongThuc", congThucDao.getcongThucList());
-
-        // Thêm thông điệp thành công hoặc lỗi vào mô hình
-        if (errol != null) {
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
+         if (errol != null) {
             model.addAttribute("errol", errol);
         }
         if (success != null) {
             model.addAttribute("success", success);
         }
+        return "Cong-thuc";
+    }
+
+    @GetMapping("tim-cong-thuc")
+    public String getCongThucByInput(
+                                 Model model,
+                                 @RequestParam(value = "timCongThuc") String timCongThuc) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String tenDangNhap=authentication.getName();
+        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
+        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
+        model.addAttribute("dsYeuThich", danhSachYeuThichService.getDanhSachYeuThich());
+        model.addAttribute("listCongThuc", congThucDao.getCongThucByInput("%"+timCongThuc+"%"));
 
         return "Cong-thuc";
     }
@@ -48,6 +77,8 @@ public class Cong_thuc {
 
     @GetMapping("chi-tiet-cong-thuc")
     public String getCongThucById(@RequestParam("maCongThuc")int maCongThuc, Model model){
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
         model.addAttribute("dsYeuThich", danhSachYeuThichService.getDanhSachYeuThich());
         model.addAttribute("congThuc",congThucDao.getCongThucById(maCongThuc));
         return "Chi-tiet-cong-thuc";

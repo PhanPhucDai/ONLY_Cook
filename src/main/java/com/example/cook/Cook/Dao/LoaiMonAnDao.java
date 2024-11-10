@@ -9,5 +9,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(path = "LoaiMonAn" , exported = false)
 public interface LoaiMonAnDao extends JpaRepository<LoaiMonAn, Integer> {
     LoaiMonAn findById(@Param("maLoaiMonAn")int maLoaiMonAn);
+
 }
 
