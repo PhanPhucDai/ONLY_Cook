@@ -42,8 +42,7 @@ public class NguoiDung {
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "maNguoiDung")
     private List<BaiDang> baiDangList;
 
-    public NguoiDung(int maNguoiDung, String enable, String matKhau, String hinhAnh, String vaiTro, String tenDangNhap, String diaChiEmail, String tenNguoiDung) {
-        this.maNguoiDung = maNguoiDung;
+    public NguoiDung(String enable, String matKhau, String hinhAnh, String vaiTro, String tenDangNhap, String diaChiEmail, String tenNguoiDung) {
         this.enable = enable;
         this.matKhau = matKhau;
         this.hinhAnh = hinhAnh;

@@ -69,4 +69,20 @@ public class NguoiDungService {
     }
 
 
+   // enable,   matKhau,   hinhAnh,   vaiTro,   tenDangNhap,   diaChiEmail,   tenNguoiDung) {
+
+
+        @Transactional
+    public boolean taoNguoiDung(String tenDangNhap, String email, String matKhau, String hoVaTen) {
+
+        NguoiDung nguoiDung=new NguoiDung("1",   matKhau,   "people(1).png",   "user",   tenDangNhap,   email,   hoVaTen);
+            try {
+                nguoiDungDao.save(nguoiDung);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+
+    }
+
 }

@@ -17,10 +17,7 @@ import javax.sql.DataSource;
 @Configuration
 public class Security   {
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/css/**", "/js/**", "/img_congThuc/**", "/img_baidang/**");
-    }
+
 
     @Bean
     @Autowired
@@ -34,16 +31,19 @@ public class Security   {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated() // Tất cả các request đều yêu cầu xác thực
-
+                .authorizeHttpRequests(auth -> auth
+                                .requestMatchers("img.png" ,"/tao-tai-khoan").permitAll()
+                                .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/form-login")
                         .loginProcessingUrl("/kiemtradangnhap")
                         .usernameParameter("taikhoan")
                         .passwordParameter("matkhau")
+
                         .defaultSuccessUrl("/kiem_tra_dang_nhap", true)
                         .permitAll() )
+
 
                 .httpBasic(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable());

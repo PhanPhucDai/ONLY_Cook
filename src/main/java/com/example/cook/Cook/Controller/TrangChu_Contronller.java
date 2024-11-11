@@ -46,12 +46,11 @@ public class TrangChu_Contronller {
         String tenDangNhap = authentication.getName();
         NguoiDung nguoidung = nguoiDung.getNguoiDung(tenDangNhap);
         List<BaiDangDTO> baiDangDTOS = listTime(baiDangService.baiDangDTOList());
-
+        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        model.addAttribute("loaiMonAnList",loaiMonAnList );
         model.addAttribute("errol", errol);
         model.addAttribute("success", success);
         model.addAttribute("baiDangs", baiDangDTOS);
-        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
-        model.addAttribute("loaiMonAnList",loaiMonAnList );
         model.addAttribute("nguoiDung", nguoidung.getTenNguoiDung());
         return "Trang_chu";
     }

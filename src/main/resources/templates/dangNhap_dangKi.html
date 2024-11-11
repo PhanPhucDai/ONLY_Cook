@@ -90,6 +90,12 @@
 </head>
 
 <body>
+<div class="alert alert-danger position-absolute w-100"  role="alert" th:if="${error}">
+    <span th:text="${error}"></span>
+</div>
+<div class="alert alert-success position-absolute w-100" role="alert" th:if="${success}">
+    <span th:text="${success}"></span>
+</div>
 <div class="container-fluid">
     <div class="form-container">
         <div class="image-container">
@@ -116,18 +122,26 @@
             </div>
             <div id="registerForm" class="login-form hidden transition">
                 <h1>Đăng Ký</h1>
-                <form>
+                <form th:action="@{/tao-tai-khoan}" method="post">
                     <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Nhập email">
+                        <label for="email">Tên đăng nhập</label>
+                        <input type="text" id="tenDangNhap" name="tenDangNhap" placeholder="Tên đăng nhập" required>
                     </div>
                     <div>
-                        <label for="">Mật khẩu</label>
-                        <input type="password" id="" placeholder="Nhập mật khẩu"/>
+                        <label for="email">Họ và tên</label>
+                        <input type="text" id="hoVaTen" name="hoVaTen" placeholder="Họ và tên" required>
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Nhập email" required>
+                    </div>
+                    <div>
+                        <label for="matKhau">Mật khẩu</label>
+                        <input type="password" id="taoMatKhau" name="taoMatKhau" placeholder="Nhập mật khẩu" required/>
                     </div>
                     <div>
                         <label for="confirmPassword">Xác nhận mật khẩu</label>
-                        <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu">
+                        <input type="password" id="confirmPassword" name="confirmPassword"  placeholder="Nhập lại mật khẩu" required>
                     </div>
                     <div>
                         <a class="register-link" onclick="toggleForms()">Đã có tài khoản? Đăng nhập</a>
