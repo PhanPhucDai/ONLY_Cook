@@ -78,6 +78,10 @@ public class Cong_thuc {
     @GetMapping("chi-tiet-cong-thuc")
     public String getCongThucById(@RequestParam("maCongThuc")int maCongThuc, Model model){
         List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        String tenDangNhap=authentication.getName();
+        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
+        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
         model.addAttribute("loaiMonAnList",loaiMonAnList );
         model.addAttribute("dsYeuThich", danhSachYeuThichService.getDanhSachYeuThich());
         model.addAttribute("congThuc",congThucDao.getCongThucById(maCongThuc));

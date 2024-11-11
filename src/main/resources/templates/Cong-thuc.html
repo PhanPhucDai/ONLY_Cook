@@ -169,8 +169,12 @@
             </a>
         </div>
         <div class="timkiem">
-            <input class="input" type="text" placeholder="Tìm kiếm công thức">
-            <a><img class="" src="/finding.png" style="width: 40px; height: 40px;"></a>
+            <form th:action="tim-cong-thuc">
+                <input class="input" name="timCongThuc" type="text" placeholder="Tìm kiếm công thức">
+                <button type="submit" style="background: none; border: none;">
+                    <img src="/finding.png" style="width: 40px; height: 40px;">
+                </button>
+            </form>
         </div>
         <div class="anhdaidien" style="width: 300px; display: flex;">
             <a th:href="@{/nguoi_dung_view}" style="text-decoration: none;">
