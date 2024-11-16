@@ -231,6 +231,7 @@
             </a>
         </div>
     </div>
+
     <div class="main">
         <div class="taikhoan">
 
@@ -250,8 +251,7 @@
 
             <div class="noidungchinh">
                 <div style="display: inline-flex; width: 100%; height: 50px;">
-
-                    <div style="  width: 100px; height: 100px; margin: 0px 20px 20px 80px;">
+                     <div style="  width: 100px; height: 100px; margin: 0px 20px 20px 80px;">
                         <img style="width: 100px; height: 100px; margin: 100px 0px 190px 0px;" th:src="${nguoidung.hinhAnh}">
                         <button style="top:-260px; " class="custom-file-upload">Đổi ảnh</button>
                         <form id="imageUploadForm" th:action="@{/update_hinhAnh}" method="post" enctype="multipart/form-data">
@@ -268,10 +268,7 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
-
-
                     <div style=" width: 400px;  margin: 80px 20px 20px 80px;">
                         <h6>Mã người dùng</h6>
                         <div class="input-group mb-3">
@@ -281,9 +278,7 @@
                         </div>
                         <h6>Tên người dùng</h6>
                         <div class="input-group mb-3">
-                            <input style="border: 1px solid;" disabled th:value="${nguoidung.tenNguoiDung}" type="text"
-                                   class="form-control" placeholder="Recipient's username"
-                                   aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input style="border: 1px solid;" disabled th:value="${nguoidung.tenNguoiDung}" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
                         </div>
                     </div>
                 </div>
