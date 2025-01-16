@@ -7,20 +7,22 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+
     <style>
         body {
-
-            width: 100vw;
+            background: url('/OC.png') ;
+            background-size: cover; /* Thêm thuộc tính này để ảnh phủ đầy toàn bộ màn hình */
+            font-family: 'Comfortaa', sans-serif;
         }
 
         .container {
-
             height: 100px;
             width: 100px;
         }
 
         .form-container {
-
             display: flex;
             justify-content: center;
             align-items: center;
@@ -42,16 +44,18 @@
         }
 
         .login-form {
-            position: relative;
-			top: 80px;
-			left: 350px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 2;
             padding: 50px;
             margin: 50px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 15px;
             width: 100%;
+            max-width: 500px;
         }
+
+
 
         input {
             width: 100%;
@@ -86,6 +90,25 @@
         .transition {
             transition: opacity 0.5s ease;
         }
+        h1 {
+            font-weight: bold;
+            font-size: 40px;
+        }
+        a {
+            width: 400px;
+            padding: 3px;
+            text-align: center;
+            color:rgb(0, 149, 255);
+            background-color: rgb(255, 179, 0);
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 40px;
+            font-weight: bold;
+        }
+        a:hover{
+            background-color: rgb(0, 149, 255);
+            color: rgb(255, 179, 0);
+        }
     </style>
 </head>
 
@@ -99,9 +122,8 @@
 <div class="container-fluid">
     <div class="form-container">
         <div class="image-container">
-            <img src="img.png" alt="Background Image" class="form-background" id="backgroundImage">
             <div id="loginForm" class="login-form visible transition">
-                <h1>Đăng Nhập</h1>
+                <h1>Login-Cook</h1>
                 <form th:action="@{/kiemtradangnhap}" method="post">
                     <div>
                         <label for="taikhoan">Tài khoản</label>
@@ -113,10 +135,11 @@
                     </div>
                     <div>
                         <a class="forgot-password">Quên mật khẩu?</a>
-                        <a class="register-link" onclick="toggleForms()">Bạn chưa có tài khoản?</a>
+                        <a class="register-link" onclick="toggleForms()">Đăng Ký</a>
                     </div>
                     <div>
-                        <button type="submit">Đăng Nhập</button>
+                        <button type="submit">Cook Now</button>
+
                     </div>
                 </form>
             </div>
@@ -148,8 +171,10 @@
                     </div>
                     <div>
                         <button type="submit">Đăng Ký</button>
+
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
