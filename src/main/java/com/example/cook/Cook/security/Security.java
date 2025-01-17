@@ -1,17 +1,12 @@
 package com.example.cook.Cook.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
-import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
+ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
+  import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.sql.DataSource;
 @Configuration
@@ -33,18 +28,14 @@ public class Security   {
         httpSecurity
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers("img.png" ,"/tao-tai-khoan").permitAll()
-                                .anyRequest().authenticated()
-                )
+                                .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/form-login")
                         .loginProcessingUrl("/kiemtradangnhap")
                         .usernameParameter("taikhoan")
                         .passwordParameter("matkhau")
-
                         .defaultSuccessUrl("/kiem_tra_dang_nhap", true)
-                        .permitAll() )
-
-
+                        .permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable());
         return httpSecurity.build();

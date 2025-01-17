@@ -64,9 +64,15 @@ public class NguoiDungController {
     public String getNguoiDung(Model model){
        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
        String tenDangNhap=authentication.getName();
+
+       System.out.println("Ten dang nhap"+ tenDangNhap);
+
        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
+
+        System.out.println("Nguoi dung"+ nguoiDung.getTenNguoiDung());
+
         List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
-        model.addAttribute("loaiMonAnList",loaiMonAnList );
+       model.addAttribute("loaiMonAnList",loaiMonAnList );
        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
        model.addAttribute("nguoidung",nguoiDung);
        return "nguoidung";
@@ -77,7 +83,7 @@ public class NguoiDungController {
     @PostMapping("/update_tendangnhap")
     public String updateTenDangNhap(@RequestParam("tenNguoiDung") String tentaikhoan, Model model){
             NguoiDung nguoiDung=nguoiDungService.update_tenNguoiDUng(tentaikhoan);
-        return "redirect:/nguoi_dung_view";
+         return "redirect:/nguoi_dung_view";
     }
 
     @PostMapping("/update_diaChi")

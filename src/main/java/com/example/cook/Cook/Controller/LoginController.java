@@ -25,17 +25,12 @@ public class LoginController {
     public String trangDangNhap(@RequestParam(value = "error", required = false) String error,
                                 @RequestParam(value = "success", required = false) String success,
                                 Model model) {
-
         if (error != null) {
             model.addAttribute("error", "Đăng nhập thất bại. Vui lòng thử lại.");
         }
-
-        // Kiểm tra nếu tham số success có trong URL
         if (success != null) {
             model.addAttribute("success", "Đăng ký thành công. Vui lòng đăng nhập.");
         }
-
-
         return "dangNhap_dangKi";
     }
 
@@ -47,7 +42,6 @@ public class LoginController {
                               @RequestParam("confirmPassword")String xacNhanMatKhau,
                               @RequestParam("hoVaTen")String hoVaTen,
                               RedirectAttributes redirectAttributes){
-        System.out.println("có vào ");
         if (!(matKhau.equals(xacNhanMatKhau))) {
             redirectAttributes.addFlashAttribute("error", "Xác nhận mật khẩu không chính xác vui lòng thử lại");
             return "redirect:/form-login";

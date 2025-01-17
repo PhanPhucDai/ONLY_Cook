@@ -7,6 +7,7 @@ import com.example.cook.Cook.Entity.NguoiDung;
 import com.example.cook.Cook.security.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -34,7 +35,17 @@ public class NguoiDungService {
         String tenDangNhap=authentication.getName();
         NguoiDung nguoiDung=getNguoiDung(tenDangNhap);
         nguoiDung.setTenDangNhap(tenTaiKhoan);
-        nguoiDungDao.save(nguoiDung);
+        try {
+            nguoiDungDao.save(nguoiDung);
+            Authentication newAuth = new UsernamePasswordAuthenticationToken(
+                    nguoiDung.getTenDangNhap(),
+                    authentication.getCredentials(),
+                    authentication.getAuthorities()
+            );
+            SecurityContextHolder.getContext().setAuthentication(newAuth);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return nguoiDung;
     }
 
