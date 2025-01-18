@@ -24,10 +24,6 @@ public class BaiDangService {
     @Transactional
     public List<BaiDangDTO> baiDangDTOList(){
         List<BaiDangDTO> list=baiDangDao.AllBaiDang();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print("hinh anh nguoi dung 2"+ list.get(i).getHinhAnhNguoiDung());
-
-        }
         return list;
     }
 

@@ -30,6 +30,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -98,14 +99,9 @@ public class NguoiDungController {
             model.addAttribute("errol" , "Vui lòng chọn ảnh để thêm");
         }
         try{
-            Path path1= Paths.get(path);
-            if(!Files.exists(path1)){
-                Files.createDirectories(path1);
-            }
-            String fileName =hinhAnh.getOriginalFilename();
-            Path filePath=path1.resolve(fileName);
-            Files.write(filePath, hinhAnh.getBytes());
-            nguoiDungService.update_hinhAnh(filePath.toString() );
+            byte[] byteHinhAnh= hinhAnh.getBytes();
+            String base64HinhAnh = Base64.getEncoder().encodeToString(byteHinhAnh);
+            nguoiDungService.update_hinhAnh("data:image/png;base64,"+base64HinhAnh);
             return "redirect:/nguoi_dung_view";
         }catch(Exception ex){
             ex.printStackTrace();
