@@ -27,6 +27,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -62,20 +63,13 @@ public class TrangChu_Contronller {
             , @RequestParam(value = "hinhAnh", required = false) MultipartFile hinhAnh
             , @RequestParam(value = "noiDungBaiDang") String noiDungBaiDang
             , @RequestParam(value = "cheDoXem") boolean cheDoXem
-            , RedirectAttributes redirectAttributes) {
-        System.out.println(cheDoXem);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            , RedirectAttributes redirectAttributes) throws IOException {
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String tenDangNhap = authentication.getName();
         NguoiDung nguoidung = nguoiDung.getNguoiDung(tenDangNhap);
-        String hinhAnhAfterCheck =luuHinhAnh(hinhAnh);
-        if(hinhAnhAfterCheck.equals("errol")) {
-            redirectAttributes.addFlashAttribute("errol","Vui lòng kiểm tra lại file hình ảnh");
-            return "redirect:/Trang-chu";
-        }
-
-        BaiDang baiDang = new BaiDang(nguoidung,noiDungBaiDang, (cheDoXem ?1:0), hinhAnhAfterCheck);
-        System.out.println((cheDoXem ?1:0));
-
+        byte[] byteHinhAnh = hinhAnh.getBytes();
+        String base64HinhAnh = Base64.getEncoder().encodeToString(byteHinhAnh);
+        BaiDang baiDang = new BaiDang(nguoidung,noiDungBaiDang, (cheDoXem ?1:0), "data:image/png;base64,"+base64HinhAnh);
         baiDangService.luuBaiDang(baiDang);
         return "redirect:/ban_tin_ca_nhan";
     }
@@ -107,38 +101,6 @@ public class TrangChu_Contronller {
             }
         }
         return baiDangDTOS;
-    }
-
-    public boolean check(MultipartFile hinhAnh){
-        String fileName= hinhAnh.getOriginalFilename();
-        if(fileName!=null){
-            String fileHinhAnh=fileName.toLowerCase();
-
-            return fileHinhAnh.endsWith(".jpg") || fileHinhAnh.endsWith(".jpeg") ||
-                    fileHinhAnh.endsWith(".png") || fileHinhAnh.endsWith(".gif") ||
-                    fileHinhAnh.endsWith(".bmp") || fileHinhAnh.endsWith(".jfif");
-        }
-        return false;
-    }
-
-    public String luuHinhAnh(MultipartFile hinhAnh){
-        Path path=Path.of("/img_baidang");
-        Path path1;
-        if(!check(hinhAnh)){
-            return "errol";
-        }
-        try {
-            if(!Files.exists(path)){
-                Files.createDirectories(path);
-            }
-
-            String fileHinhAnh=hinhAnh.getOriginalFilename();
-            path1=path.resolve(fileHinhAnh);
-            Path files=Files.write(path1,hinhAnh.getBytes());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return path1.toString();
     }
 
 }

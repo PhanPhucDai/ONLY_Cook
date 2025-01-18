@@ -325,7 +325,7 @@
                     <label for="exampleFormControlTextarea1" class="form-label">Loại công thức</label>
                     <select class="form-select" aria-label="Default select example"  name="loaiCongThuc">
                         <option selected value="">Chọn loại công thức</option>
-                        <option th:each="item : ${listLoaiMonAn}" th:value="${item.maNguyenLieu}" th:text="${item.tenNguyenLieu}"></option>
+                        <option th:each="item : ${listLoaiMonAn}" th:value="${item.tenLoaiMonAn}" th:text="${item.tenLoaiMonAn}"></option>
                     </select>
                 </div>
             </div>
