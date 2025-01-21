@@ -12,8 +12,9 @@
 
     <style>
         body {
-            background: url('/OC.png') ;
-            background-size: cover; /* Thêm thuộc tính này để ảnh phủ đầy toàn bộ màn hình */
+            background-color: #c1ff72;
+            background: url('/OC_BR.png') ;
+            background-size: cover;
             font-family: 'Comfortaa', sans-serif;
         }
 
@@ -46,8 +47,8 @@
         .login-form {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 46%;
+            transform: translate(-46%, -50%);
             z-index: 2;
             padding: 50px;
             margin: 50px;
@@ -59,20 +60,62 @@
 
         input {
             width: 100%;
-            border: 1px solid #ccc;
+            border: 2px solid #ccc;
             border-radius: 5px;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        input:hover{
+            border: 2px solid rgb(255, 179, 0);
+        }
+        input:focus{
+            border: 2px solid rgb(0, 42, 255);
+        }
+        button {
+            position: relative;
+            width: 100%;
+            background-color: #c1ff72;
+            color: rgb(0, 102, 255);
+            border: 3px solid rgb(0, 102, 255);
+            border-radius: 35px;
+            margin-bottom: 20px;
+            padding: 5px;
+            font-weight: bold;
+            font-size: 23px;
+            overflow: hidden;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            transition: color 0.4s ease;
         }
 
-        button {
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            background-color: rgb(5, 188, 254);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px;
+            height: 100%;
+            border-radius: 30px;
+            background-color: rgb(0, 102, 255);
+            transition: left 0.4s ease-in-out;
         }
+
+        button:hover::before {
+            left: 0;
+        }
+
+        button:hover {
+            color: rgb(255, 179, 0);
+        }
+
+        button span {
+            position: relative;
+            z-index: 1; /* Đảm bảo chữ luôn nằm trên cùng */
+        }
+
+
+
 
         .forgot-password,
         .register-link {
@@ -90,25 +133,53 @@
         .transition {
             transition: opacity 0.5s ease;
         }
+
         h1 {
             font-weight: bold;
             font-size: 40px;
+            margin-bottom: 40px;
         }
+
         a {
+            position: relative;
             width: 400px;
-            padding: 3px;
+            padding: 5px;
             text-align: center;
-            color:rgb(0, 149, 255);
-            background-color: rgb(255, 179, 0);
+            color: rgb(255, 111, 0) !important;
             text-decoration: none;
             margin-bottom: 10px;
-            border-radius: 40px;
+            border-radius: 5px 40px;
             font-weight: bold;
+            display: inline-block;
+            overflow: hidden;
         }
-        a:hover{
-            background-color: rgb(0, 149, 255);
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             color: rgb(255, 179, 0);
+            background-color: rgb(255, 111, 0);
+            transition: left 0.6s ease;
+            z-index: 0; /* Đảm bảo phần nền ở dưới */
+            border-radius: 5px 40px;
         }
+
+        a:hover::before {
+            left: 100%;
+        }
+
+        a span {
+            position: relative;
+            z-index: 1; /* Đảm bảo chữ luôn nằm trên cùng */
+        }
+
+
+
+
     </style>
 </head>
 
@@ -126,20 +197,22 @@
                 <h1>Login-Cook</h1>
                 <form th:action="@{/kiemtradangnhap}" method="post">
                     <div>
-                        <label for="taikhoan">Tài khoản</label>
-                        <input type="text" id="taikhoan" name="taikhoan" placeholder="Nhập tài khoản">
+                        <label for="taikhoan">Tên Tài Khoản</label>
+                        <input type="text" id="taikhoan" name="taikhoan" placeholder="Enter you username ...">
                     </div>
                     <div>
                         <label for="matkhau">Mật khẩu</label>
-                        <input type="password" id="matkhau" name="matkhau" placeholder="Nhập mật khẩu">
+                        <input type="password" id="matkhau" name="matkhau" placeholder="Enter you password ...">
                     </div>
-                    <div>
-                        <a class="forgot-password">Quên mật khẩu?</a>
-                        <a class="register-link" onclick="toggleForms()">Đăng Ký</a>
-                    </div>
-                    <div>
-                        <button type="submit">Cook Now</button>
 
+                    <div>
+                        <button type="submit">
+                            <span>Cook Now</span>
+                        </button>
+                        <div>
+                            <a class="forgot-password"><span>Quên mật khẩu?</span></a>
+                            <a class="register-link" onclick="toggleForms()"><span>Đăng Ký</span></a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -166,12 +239,14 @@
                         <label for="confirmPassword">Xác nhận mật khẩu</label>
                         <input type="password" id="confirmPassword" name="confirmPassword"  placeholder="Nhập lại mật khẩu" required>
                     </div>
-                    <div>
-                        <a class="register-link" onclick="toggleForms()">Đã có tài khoản? Đăng nhập</a>
-                    </div>
-                    <div>
-                        <button type="submit">Đăng Ký</button>
 
+                    <div>
+                        <button type="submit">
+                            <span>Ready Cook</span>
+                        </button>
+                        <div>
+                            <a class="register-link" onclick="toggleForms()"><span>Đã có tài khoản? Đăng nhập</span></a>
+                        </div>
                     </div>
                 </form>
 
