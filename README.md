@@ -1,5 +1,26 @@
-![image](https://github.com/user-attachments/assets/7cebe504-8a6b-47ea-9b72-fa9a5ffd8bbc)Dự án mạng xã hồi nhằm chia sẽ kiến thức về công thức nấu ăn + diễn dàn nấu ăn nơi mà mọi người có thể chia sẽ kiến thức về nấu ăn.
-![image](https://github.com/user-attachments/assets/07720a28-a4d2-43fd-ad5b-644fd593f668)Dự án này nhằm mục đích ôn tập các kiến thức đã được học về **Themleaf**, **SpringBoot**, **Hibernate**.
-![image](https://github.com/user-attachments/assets/7c42e869-74ee-401e-a25f-ef6422bdd580)Dự án này gồm 2 thành viên với mình làm về phần Backend và cơ sở dữ liệu và 1 bạn mình mời để hỗ trợ mình về phần Frontend 
-Ngoài ra thì cơ sở dữ liệu thì mình sử dụng SQL Server.
-Cảm ơn bạn đã đọc về cái dự này của mình thì đây chỉ là một dự án nhỏ để mình ôn lại kiến thức mình đã học thôi nên cũng ít có gì đặc biệt cảm ơn bạn đã bỏ thời gian để đọc về dự án của mình 
+🌐 Dự án Mạng Xã Hội - Chia Sẻ Kiến Thức Nấu Ăn
+🎯 Mục đích dự án
+Dự án này được xây dựng như một nền tảng mạng xã hội đặc biệt, nơi mọi người có thể:
+
+🌟 Chia sẻ công thức nấu ăn độc đáo.
+📢 Thảo luận và trao đổi kinh nghiệm nấu ăn.
+💡 Kết nối cộng đồng yêu thích ẩm thực.
+🛠️ Công nghệ sử dụng
+Dự án này giúp mình ôn tập và củng cố các kiến thức đã học về:
+
+Thymeleaf: Tích hợp giao diện động trong Spring Boot.
+Spring Boot: Xây dựng ứng dụng web nhanh chóng và hiệu quả.
+Hibernate: Quản lý và truy vấn cơ sở dữ liệu SQL Server.
+👥 Đội ngũ phát triển
+Mình: Phụ trách toàn bộ phần Backend và cơ sở dữ liệu.
+Bạn đồng hành: Hỗ trợ hoàn thiện phần Frontend để giao diện trở nên thân thiện với người dùng.
+🗂️ Cơ sở dữ liệu
+Sử dụng SQL Server để quản lý dữ liệu. Đây là nền tảng mạnh mẽ và phù hợp với yêu cầu dự án nhỏ này.
+
+✨ Mục tiêu và ý nghĩa
+Dự án không chỉ giúp mình ôn lại các kiến thức lập trình mà còn là cơ hội để:
+
+Tích lũy thêm kinh nghiệm thực tế.
+Tạo ra sản phẩm hữu ích có thể phát triển thêm trong tương lai.
+🌟 Lời cảm ơn
+Cảm ơn bạn đã dành thời gian đọc và tìm hiểu về dự án nhỏ này. Mình rất mong nhận được góp ý để cải thiện kỹ năng và sản phẩm. ❤️
