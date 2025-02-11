@@ -208,7 +208,18 @@
         padding: 10px 20px;
         font-size: 16px;
     }
-
+    .btn-post{
+        color: #000;
+        background-color: #f2bf18;
+        font-weight: bolder;
+    }
+    .btn-post:hover{
+        color: #ff6600;
+        background-color: #ffffff;
+    }
+    .main2{
+        background-color: #ffead3;
+    }
 </style>
 
 <body>
@@ -216,7 +227,7 @@
     <div class="nav">
         <div class="logo">
             <a th:href="@{/Trang-chu}">
-              <img class="logo" src="/logo..png">
+                <img class="logo" src="/logo..png">
             </a>
         </div>
         <div class="timkiem">
@@ -295,7 +306,7 @@
             </h2>
             <ul class="list-group list-group-flush" th:each="loaiMonAns : ${loaiMonAnList}">
                 <li class=" item" style="list-style-type:none; margin-left:50px;" >
-                     <a  style="text-decoration: none; color: black;" th:href="@{/Cong-thuc-theo-loai/{id}(id=${loaiMonAns.maLoaiMonAn})}" th:text="${loaiMonAns.tenLoaiMonAn}"></a>
+                    <a  style="text-decoration: none; color: black;" th:href="@{/Cong-thuc-theo-loai/{id}(id=${loaiMonAns.maLoaiMonAn})}" th:text="${loaiMonAns.tenLoaiMonAn}"></a>
                 </li>
             </ul>
         </div>
@@ -306,10 +317,10 @@
 <div id="container1" class="container1">
     <button onclick="notShow()" type="button" class="btn-close" aria-label="Close" style="position: relative; left: 700px; margin-bottom: 10px;"></button>
     <div class="chooseStyle mb-3">
-        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container2')">Tạo Bài
+        <button type="button" class="btn-post btn btn-outline-secondary" onclick="showContainer('container2')">Tạo Bài
             Đăng</button>
         <h3>Tạo Công Thức</h3>
-        <button type="button" class="btn btn-outline-secondary" onclick="showContainer('container1')">Tạo Công
+        <button type="button" class="btn-post btn btn-outline-secondary" onclick="showContainer('container1')">Tạo Công
             Thức</button>
     </div>
     <hr>
@@ -323,11 +334,11 @@
                     </div>
                 </div>
                 <div class="form-col">
-                        <label for="exampleFormControlTextarea1" class="form-label">Loại công thức</label>
-                        <select class="form-select" aria-label="Default select example"  name="loaiCongThuc">
-                            <option selected value="">Chọn loại công thức</option>
-                            <option th:each="item : ${listLoaiMonAn}" th:value="${item.maNguyenLieu}" th:text="${item.tenNguyenLieu}"></option>
-                        </select>
+                    <label for="exampleFormControlTextarea1" class="form-label">Loại công thức</label>
+                    <select class="form-select" aria-label="Default select example"  name="loaiCongThuc">
+                        <option selected value="">Chọn loại công thức</option>
+                        <option th:each="item : ${listLoaiMonAn}" th:value="${item.maNguyenLieu}" th:text="${item.tenNguyenLieu}"></option>
+                    </select>
                 </div>
             </div>
             <div class="form-row">
