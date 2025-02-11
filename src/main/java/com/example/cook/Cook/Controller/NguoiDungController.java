@@ -18,14 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -65,14 +58,9 @@ public class NguoiDungController {
     public String getNguoiDung(Model model){
        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
        String tenDangNhap=authentication.getName();
-
-       System.out.println("Ten dang nhap"+ tenDangNhap);
-
        NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
 
-        System.out.println("Nguoi dung"+ nguoiDung.getTenNguoiDung());
-
-        List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
+       List<LoaiMonAn> loaiMonAnList =loaiMonAnService.loaiMonAnlist();
        model.addAttribute("loaiMonAnList",loaiMonAnList );
        model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
        model.addAttribute("nguoidung",nguoiDung);
