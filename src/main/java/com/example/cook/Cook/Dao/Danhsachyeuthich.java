@@ -19,7 +19,7 @@ public interface Danhsachyeuthich extends JpaRepository<DanhSachYeuThich, Intege
     @Query("SELECT new com.example.cook.Cook.DTO.CongThucDTO(ct.maCongThuc, ct.tenCongThuc, ct.moTa, nd.tenNguoiDung, ct.diemDanhGiaTrungBinh) " +
             "FROM CongThuc ct " +
             "JOIN ct.danhSachYeuThich dsyt " +
-            "JOIN dsyt.maNguoiDung nd " +  // Nếu bạn muốn lấy tên người dùng từ danh sách yêu thích
+            "JOIN dsyt.maNguoiDung nd " +
             "WHERE dsyt.maDanhSachYeuThich = :idDanhSach")
     List<CongThucDTO> findCongThucByIdDanhSach(@Param("idDanhSach") int idDanhSach);
 
