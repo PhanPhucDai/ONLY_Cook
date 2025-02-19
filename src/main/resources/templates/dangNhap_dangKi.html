@@ -112,8 +112,9 @@
             z-index: 1; /* Đảm bảo chữ luôn nằm trên cùng */
         }
         .alert {
-            transition: opacity 0.3s ease;
+            transition: opacity 0.5s ease-out;
         }
+
         .forgot-password,
         .register-link {
             color: blue;
@@ -222,7 +223,7 @@
                 <div class="text">
                     <span class="sp1">Only</span> <span class="sp2"> Cook</span>
                 </div>
-                <span>version - 4:43 - 0.1</span>
+                <span>version - 20:00 - 0.1</span>
                 <h1>Login-Cook</h1>
                 <form th:action="@{/kiemtradangnhap}" method="post">
                     <div>
@@ -308,7 +309,17 @@
     }
     function closeAlert(alertId) {
     document.getElementById(alertId).style.display = 'none';
-}
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        let alerts = document.querySelectorAll(".alert");
+        alerts.forEach(alert => {
+            alert.style.opacity = "0"; // Làm mờ dần
+            setTimeout(() => alert.style.display = "none", 500); // Ẩn sau khi mờ
+        });
+    }, 3000); // 3 giây
+});
+
 
 </script>
 

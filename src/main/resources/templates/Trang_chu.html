@@ -155,15 +155,15 @@
         height: 35px;
         padding: 0px 10px 0px 10px;
         opacity: 0.8;
+		border: none;
+		background-color: black;
+		color: #ffa600;
     }
 
-.noidungchinh {
-    scrollbar-width: thin;
-    scrollbar-color: #c6c6c6 #ffffff;
-}
-
-
-
+	.noidungchinh {
+		scrollbar-width: thin;
+		scrollbar-color: #c6c6c6 #ffffff;
+	}
 
 
     .anhdaidien {
@@ -214,11 +214,50 @@
         font-weight: bolder;
     }
     .btn-post:hover{
-        color: #ff6600;
+        color: #ffa600;
         background-color: #ffffff;
+		border: 1px solid #ffa600;
     }
     .main2{
         background-color: #ffead3;
+    }
+	.btn-sub{
+		position: relative;
+		width: 100%;
+		background-color: #f2bf18;
+		color: rgb(0, 0, 0);
+		border: 2px solid rgb(0, 0, 0);
+		border-radius: 8px;
+		padding: 5px;
+		font-weight: bold;
+		font-size: 16px;
+		overflow: hidden;
+		display: inline-block;
+		text-align: center;
+		cursor: pointer;
+		transition: color 0.4s ease;
+	}
+	.btn-sub::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		border-radius: 8px;
+		background-color: rgb(255, 255, 255);
+		transition: left 0.4s ease-in-out;
+	}
+	.btn-sub:hover::before {
+		left: 0;
+	}
+	.btn-sub:hover {
+        color: rgb(255, 179, 0);
+		border: 2px solid rgb(255, 179, 0);
+    }
+	.btn-sub span {
+            position: relative;
+            z-index: 1;
     }
 </style>
 
@@ -269,9 +308,9 @@
         <div class="noidung">
             <div class="phannoidung">
                 <div class="phannoidungchinh">
-                    <button type="button" onclick="hien()" class="btn btn-outline-secondary">Tạo bài viết mới</button>
-                    <a th:href="@{/Trang-chu}" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Bản tin</a>
-                    <a th:href="@{/Cong-thuc}" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">Công thức</a>
+                    <button type="button" onclick="hien()" class="btn-sub btn-outline-secondary"><span>Tạo bài viết mới</span></button>
+                    <a th:href="@{/Trang-chu}" class="btn-sub btn active" role="button" data-bs-toggle="button" aria-pressed="true"><span>Bản tin</span></a>
+                    <a th:href="@{/Cong-thuc}" class="btn-sub btn active" role="button" data-bs-toggle="button" aria-pressed="true"><span>Công thức</span></a>
                 </div>
             </div>
             <div class="noidungchinh" style="max-height: 600px; overflow-y: auto;">
@@ -386,7 +425,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Lưu Công Thức</button>
+            <button type="submit" class="btn-sub btn-primary w-100"><span>Lưu Công Thức</span></button>
         </form>
     </div>
 </div>
@@ -421,7 +460,7 @@
             <textarea class="form-control" id="noiDungBaiDang" name="noiDungBaiDang" rows="3"
                       placeholder="Nhập nội dung bài đăng"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Lưu Bài Đăng</button>
+        <button type="submit" class="btn-sub btn-primary w-100">Lưu Bài Đăng</button>
     </form>
 </div>
 <div th:if="${success}" class="alert alert-success" id="successAlert" >
