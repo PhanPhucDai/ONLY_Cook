@@ -82,7 +82,7 @@ public class Cong_thuc {
         NguoiDung nguoiDung=nguoiDungService.getNguoiDung(tenDangNhap);
         model.addAttribute("nguoiDung", nguoiDung.getTenNguoiDung());
         model.addAttribute("loaiMonAnList",loaiMonAnList );
-        model.addAttribute("dsYeuThich", danhSachYeuThichService.getDanhSachYeuThich());
+         model.addAttribute("dsYeuThich", danhSachYeuThichService.getDanhSachYeuThich());
         model.addAttribute("congThuc",congThucDao.getCongThucById(maCongThuc));
         return "Chi-tiet-cong-thuc";
     }

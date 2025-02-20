@@ -86,7 +86,7 @@ public class NguoiDungService {
         @Transactional
     public boolean taoNguoiDung(String tenDangNhap, String email, String matKhau, String hoVaTen) {
 
-        NguoiDung nguoiDung=new NguoiDung("1",   matKhau,   "people(1).png",   "user",   tenDangNhap,   email,   hoVaTen);
+        NguoiDung nguoiDung=new NguoiDung("1",   "{noop}"+matKhau,   "people(1).png",   "user",   tenDangNhap,   email,   hoVaTen);
             try {
                 nguoiDungDao.save(nguoiDung);
                 return true;

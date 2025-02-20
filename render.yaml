@@ -1,0 +1,6 @@
+build:
+  baseImage: "heroku/builder:22"
+  buildCommand: "./mvnw clean package -DskipTests"
+  env:
+    - key: JAVA_VERSION
+      value: "17"
