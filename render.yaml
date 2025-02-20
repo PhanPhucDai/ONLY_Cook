@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: ONLY_Cook
-    runtime: java
-    buildCommand: "chmod +x mvnw && ./mvnw clean package -DskipTests"
-    startCommand: "java -jar target/*.jar"
