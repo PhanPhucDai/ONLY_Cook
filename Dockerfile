@@ -1,5 +1,5 @@
 # Sử dụng OpenJDK 17 làm môi trường chạy
-FROM openjdk:17-jdk-slim
+FROM openjdk:22-jdk-slim
 
 # Đặt thư mục làm việc trong container
 WORKDIR /app
